@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 021959b5ff2d73e49856758b41a05bf5, type: 3}
+  m_Name: Bu Rini
+  m_EditorClassIdentifier: 
+  debtorName: Bu Rini
+  occupation: 
+  personality: 2
+  debtAmount: 10000
+  introDialogue: Aduh, Mas... Ini soal utang, ya?
+  successDialogue: Makasih ya Mas...
+  failureDialogue: "Saya gak sanggup! Jangan datang lagi ya\u2026"
+  intimidateOption: Iya, soal utang yang Ibu belum bayar. Jangan pura-pura lupa.
+  persuadeOption: Saya tahu ini berat, Bu. Saya nggak datang buat marah, tapi cari
+    solusi.
+  neutralOption: Iya, Bu. Saya cuma ingin bicara baik-baik soal pembayaran yang tertunda.
+  intimidationResistance: 0
+  persuasionSusceptibility: 50
+  empathySusceptibility: 100

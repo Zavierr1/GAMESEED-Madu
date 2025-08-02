@@ -9,7 +9,6 @@ public class UIManager : MonoBehaviour
     
     [Header("Mission Progress UI Elements")]
     [SerializeField] private TextMeshProUGUI missionProgressText;
-    [SerializeField] private TextMeshProUGUI successRateText;
     
     private void Start()
     {
@@ -38,16 +37,10 @@ public class UIManager : MonoBehaviour
             {
                 missionProgressText.text = $"Missions: {completedCount}/{totalMissions} (Success: {successCount})";
             }
-            
-            if (successRateText != null)
-            {
-                float percentage = totalMissions > 0 ? (float)successCount / totalMissions * 100f : 0f;
-                successRateText.text = $"Success Rate: {percentage:F0}%";
-            }
         }
     }
     
-    private void OnAllMissionsCompleted()
+    public void OnAllMissionsCompleted()
     {
         // Update UI one final time
         UpdateMissionProgressUI();
