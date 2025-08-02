@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Debtor1
   m_EditorClassIdentifier: 
   debtorName: PAPI LEBRON
-  personality: 3
+  personality: 1
   debtAmount: 50000
   introDialogue: Yo wassup Kings
   successDialogue: aight thank's for coming bro
