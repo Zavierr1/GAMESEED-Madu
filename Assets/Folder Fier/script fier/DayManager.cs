@@ -25,7 +25,7 @@ public class DayManager : MonoBehaviour
         currentDay = (DayOfWeek)(((int)currentDay + 1) % 7);
         UpdateDayDisplay();
         
-        // Reset missions for the new day
+        // Reset missions for the new day (this will also handle player respawn)
         MissionManager.Instance.SetupDailyMissions();
     }
     

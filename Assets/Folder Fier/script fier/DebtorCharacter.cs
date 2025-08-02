@@ -59,6 +59,7 @@ public class DebtorCharacter : MonoBehaviour
         else
         {
             Debug.LogError("DialogueManager instance not found!");
+            return;
         }
         
         // Hide the debt UI since we're now interacting
@@ -71,7 +72,7 @@ public class DebtorCharacter : MonoBehaviour
     public void SetDebtorData(Debtor newDebtor)
     {
         debtorData = newDebtor;
-        if (debtorUI != null)
+        if (debtorUI != null && debtorData != null)
         {
             debtorUI.SetDebtor(debtorData);
         }

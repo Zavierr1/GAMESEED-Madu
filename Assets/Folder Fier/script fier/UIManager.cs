@@ -4,11 +4,19 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
+    public static UIManager Instance;
+    
     [Header("Navigation")]
     [SerializeField] private Button nextDayButton;
     
     [Header("Mission Progress UI Elements")]
     [SerializeField] private TextMeshProUGUI missionProgressText;
+    
+    private void Awake()
+    {
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
+    }
     
     private void Start()
     {

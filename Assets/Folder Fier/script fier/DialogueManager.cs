@@ -71,6 +71,11 @@ public class DialogueManager : MonoBehaviour
         if (currentOutcome.moneyCollected > 0)
         {
             Debug.Log($"Money collected: ${currentOutcome.moneyCollected}");
+            // Add money to MoneyManager
+            if (MoneyManager.Instance != null)
+            {
+                MoneyManager.Instance.AddMoney(currentOutcome.moneyCollected);
+            }
         }
         
         Invoke(nameof(CompleteCurrentMission), 2f);
@@ -126,5 +131,12 @@ public class DialogueManager : MonoBehaviour
         
         // Notify mission manager
         MissionManager.Instance.CompleteMission(currentOutcome.success);
+        
+        // Refresh UI to show updated progress
+        UIManager uiManager = FindObjectOfType<UIManager>();
+        if (uiManager != null)
+        {
+            uiManager.RefreshUI();
+        }
     }
 }
