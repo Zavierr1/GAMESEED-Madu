@@ -1,7 +1,21 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System.Collections.Generic;
+
+[System.Serializable]
+public class SimpleMissionOutcome
+{
+    public bool success;
+    public float moneyCollected;
+    public string message;
+}
+
+public enum SimpleDialogueChoice
+{
+    Intimidate,
+    Persuade,
+    Neutral
+}
 
 public class DialogueManager : MonoBehaviour
 {
@@ -10,24 +24,24 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private TextMeshProUGUI debtorNameText;
     [SerializeField] private TextMeshProUGUI dialogueText;
+    [SerializeField] private TextMeshProUGUI debtAmountText;
     [SerializeField] private Button intimidateButton;
     [SerializeField] private Button persuadeButton;
     [SerializeField] private Button neutralButton;
     
     private Debtor currentDebtor;
+    private SimpleMissionOutcome currentOutcome;
     
     private void Awake()
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
         
-        // Hide dialogue panel initially
         dialoguePanel.SetActive(false);
         
-        // Add button listeners
-        intimidateButton.onClick.AddListener(() => OnDialogueChoice(DialogueChoice.Intimidate));
-        persuadeButton.onClick.AddListener(() => OnDialogueChoice(DialogueChoice.Persuade));
-        neutralButton.onClick.AddListener(() => OnDialogueChoice(DialogueChoice.Neutral));
+        intimidateButton.onClick.AddListener(() => OnDialogueChoice(SimpleDialogueChoice.Intimidate));
+        persuadeButton.onClick.AddListener(() => OnDialogueChoice(SimpleDialogueChoice.Persuade));
+        neutralButton.onClick.AddListener(() => OnDialogueChoice(SimpleDialogueChoice.Neutral));
     }
     
     public void StartDialogue(Debtor debtor)
@@ -35,70 +49,82 @@ public class DialogueManager : MonoBehaviour
         currentDebtor = debtor;
         dialoguePanel.SetActive(true);
         
-        // Set debtor name
         debtorNameText.text = debtor.debtorName;
-        
-        // Set intro dialogue
+        debtAmountText.text = $"Debt: ${debtor.debtAmount:F0}";
         dialogueText.text = debtor.introDialogue;
         
-        // Set button text
         intimidateButton.GetComponentInChildren<TextMeshProUGUI>().text = debtor.intimidateOption;
         persuadeButton.GetComponentInChildren<TextMeshProUGUI>().text = debtor.persuadeOption;
         neutralButton.GetComponentInChildren<TextMeshProUGUI>().text = debtor.neutralOption;
     }
     
-    private void OnDialogueChoice(DialogueChoice choice)
+    private void OnDialogueChoice(SimpleDialogueChoice choice)
     {
-        // Determine outcome based on debtor personality and player choice
-        bool success = DetermineOutcome(choice);
+        currentOutcome = DetermineOutcome(choice);
         
-        // Show outcome dialogue
-        dialogueText.text = success ? currentDebtor.successDialogue : currentDebtor.failureDialogue;
+        dialogueText.text = currentOutcome.success ? currentDebtor.successDialogue : currentDebtor.failureDialogue;
         
-        // Disable choice buttons
         intimidateButton.interactable = false;
         persuadeButton.interactable = false;
         neutralButton.interactable = false;
         
-        // After a delay, complete the mission
+        if (currentOutcome.moneyCollected > 0)
+        {
+            Debug.Log($"Money collected: ${currentOutcome.moneyCollected}");
+        }
+        
         Invoke(nameof(CompleteCurrentMission), 2f);
     }
     
-    private bool DetermineOutcome(DialogueChoice choice)
+    private SimpleMissionOutcome DetermineOutcome(SimpleDialogueChoice choice)
     {
-        // Simple logic - in a full game, this would be more complex
+        SimpleMissionOutcome outcome = new SimpleMissionOutcome();
+        bool success = false;
+        
+        // Simple success logic based on personality
         switch (currentDebtor.personality)
         {
-            case PersonalityType.Aggressive:
-                return choice == DialogueChoice.Intimidate;
-            case PersonalityType.Passive:
-                return choice == DialogueChoice.Persuade;
-            case PersonalityType.Indecisive:
-                return choice == DialogueChoice.Neutral;
-            case PersonalityType.Calculating:
-                return choice == DialogueChoice.Persuade;
-            default:
-                return Random.value > 0.5f;
+            case PersonalityType.Arrogant: // Andri
+                success = (choice == SimpleDialogueChoice.Neutral || choice == SimpleDialogueChoice.Persuade);
+                break;
+                
+            case PersonalityType.Gentle: // Bu Siti
+                success = (choice == SimpleDialogueChoice.Persuade || choice == SimpleDialogueChoice.Neutral);
+                break;
+                
+            case PersonalityType.Cunning: // Pak Riko
+                success = (choice == SimpleDialogueChoice.Neutral || choice == SimpleDialogueChoice.Persuade);
+                break;
+                
+            case PersonalityType.Aggressive: // Yusuf
+                success = (choice == SimpleDialogueChoice.Persuade || choice == SimpleDialogueChoice.Neutral);
+                break;
+                
+            case PersonalityType.Humble: // Bu Rini
+                success = (choice == SimpleDialogueChoice.Persuade || choice == SimpleDialogueChoice.Neutral);
+                break;
+                
+            case PersonalityType.Stubborn: // Rizwan
+                success = (choice == SimpleDialogueChoice.Persuade);
+                break;
         }
+        
+        outcome.success = success;
+        outcome.moneyCollected = success ? currentDebtor.debtAmount : 0;
+        outcome.message = success ? "Payment collected!" : "Failed - can revisit";
+        
+        return outcome;
     }
     
     private void CompleteCurrentMission()
     {
         dialoguePanel.SetActive(false);
         
-        // Reset buttons
         intimidateButton.interactable = true;
         persuadeButton.interactable = true;
         neutralButton.interactable = true;
         
         // Notify mission manager
-        MissionManager.Instance.CompleteMission(true);
+        MissionManager.Instance.CompleteMission(currentOutcome.success);
     }
-}
-
-public enum DialogueChoice
-{
-    Intimidate,
-    Persuade,
-    Neutral
 }

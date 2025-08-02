@@ -6,13 +6,19 @@ public class MissionManager : MonoBehaviour
 {
     public static MissionManager Instance;
     
-    [SerializeField] private int minDailyMissions = 2;
-    [SerializeField] private int maxDailyMissions = 3;
+    [Header("Daily Mission Settings")]
+    [SerializeField] private int totalMissions = 3;
+    [SerializeField] private int successfulMissions = 0;
+    [SerializeField] private int completedMissions = 0;
     
     private List<Debtor> todayDebtors = new List<Debtor>();
-    private int completedMissions = 0;
     
     public UnityEvent onAllMissionsCompleted;
+    
+    // Public getters for UI
+    public int GetSuccessCount() { return successfulMissions; }
+    public int GetTotalMissions() { return totalMissions; }
+    public int GetCompletedCount() { return completedMissions; }
     
     private void Awake()
     {
@@ -29,18 +35,21 @@ public class MissionManager : MonoBehaviour
     {
         todayDebtors.Clear();
         completedMissions = 0;
+        successfulMissions = 0;
         
-        // Generate random number of missions for the day
-        int missionCount = UnityEngine.Random.Range(minDailyMissions, maxDailyMissions + 1);
-        
-        // Get debtors from the pool (would be replaced with actual debtor database)
-        for (int i = 0; i < missionCount; i++)
+        // Always exactly 3 missions per day
+        for (int i = 0; i < totalMissions; i++)
         {
             Debtor newDebtor = DebtorPool.Instance.GetRandomDebtor();
-            todayDebtors.Add(newDebtor);
+            if (newDebtor != null)
+            {
+                todayDebtors.Add(newDebtor);
+            }
         }
         
-        // Start first mission
+        Debug.Log($"Daily missions setup: {todayDebtors.Count} debtors assigned");
+        
+        // Start first mission if available
         if (todayDebtors.Count > 0)
         {
             StartMission(0);
@@ -53,16 +62,34 @@ public class MissionManager : MonoBehaviour
             return;
             
         Debtor currentDebtor = todayDebtors[debtorIndex];
-        DialogueManager.Instance.StartDialogue(currentDebtor);
+        
+        // Use DialogueManager
+        if (DialogueManager.Instance != null)
+        {
+            DialogueManager.Instance.StartDialogue(currentDebtor);
+        }
+        else
+        {
+            Debug.LogError("DialogueManager instance not found!");
+        }
     }
     
     public void CompleteMission(bool success)
     {
         completedMissions++;
         
-        // Check if all missions are completed
-        if (completedMissions >= todayDebtors.Count)
+        if (success)
         {
+            successfulMissions++;
+        }
+        
+        Debug.Log($"Mission {completedMissions}/{totalMissions} completed. Success: {success}");
+        Debug.Log($"Success rate: {successfulMissions}/{totalMissions}");
+        
+        // Check if all missions completed
+        if (completedMissions >= totalMissions)
+        {
+            Debug.Log($"All missions completed! Final result: {successfulMissions}/{totalMissions}");
             onAllMissionsCompleted.Invoke();
         }
         else
@@ -75,5 +102,11 @@ public class MissionManager : MonoBehaviour
     public List<Debtor> GetTodayDebtors()
     {
         return todayDebtors;
+    }
+    
+    // Reset for new day
+    public void StartNewDay()
+    {
+        SetupDailyMissions();
     }
 }
