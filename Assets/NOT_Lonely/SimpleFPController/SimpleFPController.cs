@@ -56,6 +56,7 @@ public class SimpleFPController : MonoBehaviour
     private bool rightMove = false;
 
     private CharacterController controller;
+    private Animator animator;
 
     private void OnDisable()
     {
@@ -64,6 +65,8 @@ public class SimpleFPController : MonoBehaviour
 
     void Start()
     {
+        animator = GetComponentInChildren<Animator>(); 
+
         controller = GetComponent<CharacterController>();
         cam = GetComponentInChildren<Camera>();
         //rb = GetComponent<Rigidbody>();
@@ -91,6 +94,15 @@ public class SimpleFPController : MonoBehaviour
         CameraLook();
 
         PlayerMove();
+
+        bool isAnyMovement = forwardMove || backwardMove || leftMove || rightMove;
+
+        if (animator != null)
+        {
+            animator.SetBool("isMoving", isAnyMovement);
+            animator.SetBool("isRunning", isAnyMovement && speed == runSpeed);
+        }
+
     }
 
     float refVelX;
