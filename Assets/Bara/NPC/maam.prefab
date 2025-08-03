@@ -3562,6 +3562,7 @@ GameObject:
   - component: {fileID: 7310995270345738414}
   - component: {fileID: 1800818287087339264}
   - component: {fileID: 6787486456385441484}
+  - component: {fileID: 1388324342559904709}
   m_Layer: 0
   m_Name: maam
   m_TagString: Untagged
@@ -3740,6 +3741,20 @@ MonoBehaviour:
   debtorData: {fileID: 0}
   debtorUI: {fileID: 8864898605558411655, guid: 764b2eb2ffce78749bfc8a2400c52931, type: 3}
   interactionRange: 3
+--- !u!114 &1388324342559904709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2546704531556121791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44837b0d974c07045a8182431e4334de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionRange: 3
+  hasBeenInteracted: 0
 --- !u!1 &2571271996469867201
 GameObject:
   m_ObjectHideFlags: 0

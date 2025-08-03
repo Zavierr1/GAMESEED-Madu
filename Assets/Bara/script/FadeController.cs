@@ -22,15 +22,15 @@ public class FadeController : MonoBehaviour
 
     private IEnumerator FadeIn()
     {
-        float t = 1;
+        float t = 0;
         while (t < fadeDuration)
         {
             t += Time.deltaTime;
-            fadeCanvasGroup.alpha = 0 - (1 / fadeDuration);
+            fadeCanvasGroup.alpha = 1 - (t / fadeDuration);
             yield return null;
         }
 
-        fadeCanvasGroup.alpha = 1;
+        fadeCanvasGroup.alpha = 0;
         fadeCanvasGroup.interactable = false;
         fadeCanvasGroup.blocksRaycasts = false;
     }
