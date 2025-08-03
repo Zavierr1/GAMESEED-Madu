@@ -5,14 +5,16 @@ using System.Collections.Generic;
 public class MissionManager : MonoBehaviour
 {
     public static MissionManager Instance;
-    
+
     [Header("Daily Mission Settings")]
-    [SerializeField] private GameObject debtorCharacterPrefab;
     [SerializeField] private Transform[] spawnPoints;
     [SerializeField] private int totalMissions = 3;
     [SerializeField] private int successfulMissions = 0;
     [SerializeField] private int completedMissions = 0;
     
+    [Header("Debtor Character Variants")]
+    [SerializeField] private List<GameObject> debtorCharacterPrefabs; // Drag all 6 prefabs here via Inspector
+
     [Header("Player Respawn Settings")]
     [SerializeField] private Transform playerSpawnPoint;
     [SerializeField] private bool respawnPlayerOnNewDay = true;
@@ -62,61 +64,67 @@ public class MissionManager : MonoBehaviour
         
         SetupDailyMissions();
     }
-    
+
     public void SetupDailyMissions()
     {
-        // Respawn player to starting position if enabled
+        // Respawn player ke posisi awal jika diaktifkan
         if (respawnPlayerOnNewDay && playerTransform != null)
         {
             RespawnPlayer();
         }
-        
-        // Clean up previous day's debtor characters
+
+        // Hapus semua debtor yang masih ada dari hari sebelumnya
         DebtorCharacter[] existingDebtors = FindObjectsOfType<DebtorCharacter>();
         foreach (DebtorCharacter debtor in existingDebtors)
         {
             Destroy(debtor.gameObject);
         }
-        
+
         todayDebtors.Clear();
         completedMissions = 0;
         successfulMissions = 0;
-        
+
         Debug.Log("Mission progress reset: 0/3 missions completed, 0 successful missions");
-        
-        // --- IMPROVED LOGIC FOR RANDOM LOCATIONS ---
 
-        // 1. Create a temporary list of all spawn points that we can modify.
-        // This is like putting all the location papers back in the hat for the new day.
+        // --- RANDOMIZED SPAWN POINTS & CHARACTER PREFABS (NO DUPLICATES) ---
         List<Transform> availableSpawnPoints = new List<Transform>(spawnPoints);
+        List<GameObject> availableCharacterPrefabs = new List<GameObject>(debtorCharacterPrefabs);
 
-        // Determine how many missions to set up based on the smaller value:
-        // either the total missions desired or the number of available spawn points.
-        int missionsToSetup = Mathf.Min(totalMissions, spawnPoints.Length);
+        int missionsToSetup = Mathf.Min(totalMissions, Mathf.Min(availableSpawnPoints.Count, availableCharacterPrefabs.Count));
 
         for (int i = 0; i < missionsToSetup; i++)
         {
-            // Safety check: if we've somehow run out of spawn points, stop.
-            if (availableSpawnPoints.Count == 0) break;
+            if (availableSpawnPoints.Count == 0 || availableCharacterPrefabs.Count == 0)
+            {
+                Debug.LogWarning("Spawn point atau prefab habis sebelum selesai setup semua mission.");
+                break;
+            }
 
-            // Safety check: ensure DebtorPool exists
+            // Pastikan DebtorPool ada
             if (DebtorPool.Instance == null)
             {
                 Debug.LogError("DebtorPool.Instance is null! Make sure DebtorPool is in the scene.");
                 break;
             }
 
+            // Ambil data debtor dari pool
             Debtor newDebtor = DebtorPool.Instance.GetRandomDebtor();
             if (newDebtor != null)
             {
                 todayDebtors.Add(newDebtor);
 
-                // 2. Pick a random location from the list of REMAINING spawn points.
-                int randomIndex = Random.Range(0, availableSpawnPoints.Count);
-                Transform spawnPoint = availableSpawnPoints[randomIndex];
-            
-                // 3. Spawn the character at that randomly selected point.
-                GameObject debtorGO = Instantiate(debtorCharacterPrefab, spawnPoint.position, spawnPoint.rotation);
+                // Acak spawn point
+                int randomSpawnIndex = Random.Range(0, availableSpawnPoints.Count);
+                Transform spawnPoint = availableSpawnPoints[randomSpawnIndex];
+                availableSpawnPoints.RemoveAt(randomSpawnIndex);
+
+                // Acak prefab karakter debtor
+                int randomPrefabIndex = Random.Range(0, availableCharacterPrefabs.Count);
+                GameObject selectedPrefab = availableCharacterPrefabs[randomPrefabIndex];
+                availableCharacterPrefabs.RemoveAt(randomPrefabIndex);
+
+                // Spawn karakter di posisi yang dipilih
+                GameObject debtorGO = Instantiate(selectedPrefab, spawnPoint.position, spawnPoint.rotation);
                 DebtorCharacter debtorCharacter = debtorGO.GetComponent<DebtorCharacter>();
                 if (debtorCharacter != null)
                 {
@@ -124,25 +132,22 @@ public class MissionManager : MonoBehaviour
                 }
                 else
                 {
-                    Debug.LogError("DebtorCharacter component not found on prefab!");
+                    Debug.LogError("DebtorCharacter component not found on selected prefab!");
                 }
-            
-                // 4. Remove the used location from the temporary list for this day
-                // to ensure no two debtors spawn in the same place.
-                availableSpawnPoints.RemoveAt(randomIndex);
             }
         }
-        
-        Debug.Log($"Daily missions setup: {todayDebtors.Count} debtors spawned at random locations.");
-        
-        // Refresh UI to show reset mission progress (0/3, Success: 0)
+
+        Debug.Log($"Daily missions setup: {todayDebtors.Count} debtors spawned at random unique locations with unique prefabs.");
+
+        // Refresh UI
         UIManager uiManager = FindObjectOfType<UIManager>();
         if (uiManager != null)
         {
             uiManager.RefreshUI();
         }
     }
-    
+
+
     public void CompleteMission(bool success)
     {
         completedMissions++;

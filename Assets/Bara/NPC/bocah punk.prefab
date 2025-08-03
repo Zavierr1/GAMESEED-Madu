@@ -6344,6 +6344,9 @@ GameObject:
   - component: {fileID: 7434868831104749547}
   - component: {fileID: 3601952205541569487}
   - component: {fileID: 7293139974180936560}
+  - component: {fileID: 2111320960418741547}
+  - component: {fileID: 6442639136556709755}
+  - component: {fileID: -1508828615891326785}
   m_Layer: 0
   m_Name: bocah punk
   m_TagString: Untagged
@@ -6452,6 +6455,71 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!54 &2111320960418741547
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9093983033781894222}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
+--- !u!136 &6442639136556709755
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9093983033781894222}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2.0264404
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.0218755, z: 0}
+--- !u!114 &-1508828615891326785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9093983033781894222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fb032780a83be54287948dc554381b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debtorData: {fileID: 0}
+  debtorUI: {fileID: 8864898605558411655, guid: 764b2eb2ffce78749bfc8a2400c52931, type: 3}
+  interactionRange: 3
 --- !u!1 &9131726347126873484
 GameObject:
   m_ObjectHideFlags: 0
