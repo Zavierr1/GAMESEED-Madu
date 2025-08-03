@@ -3643,34 +3643,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2152902029904516714, guid: c5302d1bbd2559f44ae5a185cc8dd4b0, type: 3}
-      propertyPath: field of view
-      value: 55
-      objectReference: {fileID: 0}
-    - target: {fileID: 4571188776688882310, guid: c5302d1bbd2559f44ae5a185cc8dd4b0, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.023
-      objectReference: {fileID: 0}
-    - target: {fileID: 4571188776688882310, guid: c5302d1bbd2559f44ae5a185cc8dd4b0, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.888
-      objectReference: {fileID: 0}
-    - target: {fileID: 4571188776688882310, guid: c5302d1bbd2559f44ae5a185cc8dd4b0, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.159
-      objectReference: {fileID: 0}
-    - target: {fileID: 5195910686251520993, guid: c5302d1bbd2559f44ae5a185cc8dd4b0, type: 3}
-      propertyPath: hideCursor
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5195910686251520993, guid: c5302d1bbd2559f44ae5a185cc8dd4b0, type: 3}
-      propertyPath: mouseSensitivity.x
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5195910686251520993, guid: c5302d1bbd2559f44ae5a185cc8dd4b0, type: 3}
-      propertyPath: mouseSensitivity.y
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 6439287286417221389, guid: c5302d1bbd2559f44ae5a185cc8dd4b0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 19.007149
@@ -3718,10 +3690,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8820457810719680914, guid: c5302d1bbd2559f44ae5a185cc8dd4b0, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 528586892}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c5302d1bbd2559f44ae5a185cc8dd4b0, type: 3}
 --- !u!4 &475424821 stripped
 Transform:
@@ -4170,32 +4139,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 435502, guid: f81d7ab004531654b8e259ad9594200d, type: 3}
   m_PrefabInstance: {fileID: 793633167}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &528586888 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8820457810719680914, guid: c5302d1bbd2559f44ae5a185cc8dd4b0, type: 3}
-  m_PrefabInstance: {fileID: 473327170}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &528586892
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 528586888}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!4 &534219534 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 458114, guid: 1cc2136d6bdc61c45bcba71eab31ced9, type: 3}
