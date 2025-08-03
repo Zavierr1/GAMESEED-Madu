@@ -71,7 +71,7 @@ public class SimpleFPController : MonoBehaviour
         cam = GetComponentInChildren<Camera>();
         //rb = GetComponent<Rigidbody>();
 
-        if (hideCursor)
+        if (hideCursor && !PauseManager.isGamePaused)
         {
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
@@ -91,6 +91,8 @@ public class SimpleFPController : MonoBehaviour
 
     void Update()
     {
+        if (PauseManager.isGamePaused)
+            return;
         CameraLook();
 
         PlayerMove();

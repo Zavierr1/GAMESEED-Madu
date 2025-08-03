@@ -15,6 +15,7 @@ public class Mainmenu : MonoBehaviour
         if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
         {
             SceneManager.LoadScene(nextSceneIndex);
+            Time.timeScale = 1f; // Pastikan waktu berjalan normal
         }
         else
         {
