@@ -374,5 +374,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debtorData: {fileID: 0}
-  debtorUI: {fileID: 0}
+  debtorUI: {fileID: 8864898605558411655}
   interactionRange: 3
