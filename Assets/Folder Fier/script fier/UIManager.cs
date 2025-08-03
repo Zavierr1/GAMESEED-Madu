@@ -21,13 +21,18 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         // Hide next day button initially
-        nextDayButton.gameObject.SetActive(false);
+        if (nextDayButton != null)
+        {
+            nextDayButton.gameObject.SetActive(false);
+            // Add button listener
+            nextDayButton.onClick.AddListener(OnNextDayClicked);
+        }
         
         // Subscribe to mission completion event
-        MissionManager.Instance.onAllMissionsCompleted.AddListener(OnAllMissionsCompleted);
-        
-        // Add button listener
-        nextDayButton.onClick.AddListener(OnNextDayClicked);
+        if (MissionManager.Instance != null)
+        {
+            MissionManager.Instance.onAllMissionsCompleted.AddListener(OnAllMissionsCompleted);
+        }
         
         // Initial UI update
         UpdateMissionProgressUI();
@@ -66,9 +71,15 @@ public class UIManager : MonoBehaviour
     private void OnNextDayClicked()
     {
         // Hide the button
-        nextDayButton.gameObject.SetActive(false);
+        if (nextDayButton != null)
+        {
+            nextDayButton.gameObject.SetActive(false);
+        }
         
         // Advance to next day
-        DayManager.Instance.AdvanceDay();
+        if (DayManager.Instance != null)
+        {
+            DayManager.Instance.AdvanceDay();
+        }
     }
 }

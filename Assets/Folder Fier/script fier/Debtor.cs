@@ -44,14 +44,6 @@ public class Debtor : ScriptableObject
     [Header("Final Outcomes")]
     public string successDialogue;
     public string failureDialogue;
-    
-    [Header("Personality Traits")]
-    [Range(0, 100)]
-    public int intimidationResistance = 50;
-    [Range(0, 100)]
-    public int persuasionSusceptibility = 50;
-    [Range(0, 100)]
-    public int empathySusceptibility = 50;
 }
 
 public enum PersonalityType

@@ -38,6 +38,3 @@ MonoBehaviour:
   successDialogue: Baiklah, saya transfer sekarang. Tapi tolong beri saya waktu minggu
     depan untuk sisanya.
   failureDialogue: Udah cukup! Pergi dari rumah saya!
-  intimidationResistance: 20
-  persuasionSusceptibility: 70
-  empathySusceptibility: 60

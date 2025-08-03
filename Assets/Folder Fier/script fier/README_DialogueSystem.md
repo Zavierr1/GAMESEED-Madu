@@ -97,6 +97,37 @@ The DialogueManager expects these UI elements:
 - **DebtorDataHelper.cs**: Contains all pre-configured dialogue content
 - **DebtorCreationMenu.cs**: Editor menu for quick character creation
 - **DialogueManager.cs**: Handles multi-stage conversation flow
+- **MissionManager.cs**: Manages character spawning with unique character-prefab mapping
+
+### Character-Prefab Mapping System
+The system now ensures specific debtor personalities are matched with specific NPC prefabs:
+
+```csharp
+[System.Serializable]
+public class CharacterMapping
+{
+    public string characterName;
+    public GameObject prefab;           // Specific NPC prefab from Assets/Bara/NPC/
+    public PersonalityType personality;
+    public Debtor debtorData;          // Auto-generated from DebtorDataHelper
+}
+```
+
+### Daily Mission Setup
+- **3 unique characters per day**: No duplicates in the same day
+- **Random spawn locations**: Characters appear at different spawn points each day
+- **Consistent character-prefab pairing**: Each personality always uses the same NPC model
+- **Automatic data generation**: Character dialogue data is automatically created from DebtorDataHelper
+
+### Suggested Character-Prefab Assignments
+```
+Andri (Arrogant)    → man.prefab or mas jenggot.prefab
+Bu Wati (Gentle)    → lady.prefab or maam.prefab  
+Pak Riko (Cunning)  → om botak.prefab
+Yusuf (Aggressive)  → bocah punk.prefab
+Bu Rini (Humble)    → maam.prefab or lady.prefab
+Rizwan (Stubborn)   → man.prefab or mas jenggot.prefab
+```
 
 ### Dialogue Stages
 ```csharp
@@ -125,8 +156,15 @@ Rizwan (Stubborn):    Neutral → Persuade (ONLY)
 
 ### Integration Points
 - **Money System**: Full payment on success, nothing on failure
-- **Mission System**: Clear success/failure tracking
+- **Mission System**: Clear success/failure tracking with unique daily characters
 - **UI System**: Simple progress indicators
 - **Input System**: E/F keys to start, left-click to continue
+- **Character System**: Specific NPC prefabs paired with personality data
 
-The system provides an engaging conversation experience where players must pay attention to character responses and choose their approach carefully. The left-click progression keeps players actively engaged throughout the conversation.
+### Setup Instructions
+1. **In MissionManager**: Assign 6 NPC prefabs from `Assets/Bara/NPC/` to Character Mappings array
+2. **Use Editor Helper**: Click "Auto-Setup Character Mappings" button in Inspector for automatic assignment
+3. **Assign Spawn Points**: Set up 3+ spawn point transforms for random character placement
+4. **Verify Setup**: Test in Play mode using "Test Setup Daily Missions" button
+
+The system provides an engaging conversation experience where players meet consistent characters (same personality = same appearance) while ensuring variety through random spawning and no daily duplicates. The left-click progression keeps players actively engaged throughout conversations.

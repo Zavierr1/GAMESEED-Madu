@@ -4711,13 +4711,25 @@ MonoBehaviour:
   totalMissions: 3
   successfulMissions: 0
   completedMissions: 0
-  debtorCharacterPrefabs:
-  - {fileID: 9093983033781894222, guid: 3233df7757df72e448b229f85ff606c9, type: 3}
-  - {fileID: 8780738438863194320, guid: 428f178df299b7a408f91bcb00c7bf9c, type: 3}
-  - {fileID: 2546704531556121791, guid: a3c2175002e28f64e98e3cf86411c4b5, type: 3}
-  - {fileID: 8387436697545111101, guid: 98e63f4c3141b3043a8cd3389bac8134, type: 3}
-  - {fileID: 8810351404542666529, guid: ef02eeec79777264c899c2f833a445ad, type: 3}
-  - {fileID: 1148247473933479836, guid: f82ef1fde6c6bc9428dea3b2a267d2a3, type: 3}
+  characterMappings:
+  - characterName: Andri
+    prefab: {fileID: 8387436697545111101, guid: 98e63f4c3141b3043a8cd3389bac8134, type: 3}
+    personality: 0
+  - characterName: Bu Wati
+    prefab: {fileID: 8780738438863194320, guid: 428f178df299b7a408f91bcb00c7bf9c, type: 3}
+    personality: 1
+  - characterName: Pak Riko
+    prefab: {fileID: 1148247473933479836, guid: f82ef1fde6c6bc9428dea3b2a267d2a3, type: 3}
+    personality: 2
+  - characterName: Yusuf
+    prefab: {fileID: 9093983033781894222, guid: 3233df7757df72e448b229f85ff606c9, type: 3}
+    personality: 3
+  - characterName: Bu Rini
+    prefab: {fileID: 2546704531556121791, guid: a3c2175002e28f64e98e3cf86411c4b5, type: 3}
+    personality: 4
+  - characterName: Rizwan
+    prefab: {fileID: 8810351404542666529, guid: ef02eeec79777264c899c2f833a445ad, type: 3}
+    personality: 5
   playerSpawnPoint: {fileID: 1800526805}
   respawnPlayerOnNewDay: 1
   onAllMissionsCompleted:
@@ -23278,7 +23290,6 @@ MonoBehaviour:
   intimidateButton: {fileID: 1033634351}
   persuadeButton: {fileID: 1956911746}
   neutralButton: {fileID: 46173971}
-  clickToContinuePrompt: {fileID: 0}
 --- !u!4 &1670522417
 Transform:
   m_ObjectHideFlags: 0

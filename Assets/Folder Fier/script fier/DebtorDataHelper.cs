@@ -27,18 +27,13 @@ public static class DebtorDataHelper
         debtor.responseToPersuade = "Saya memang belum bayar, tapi uang saya pas-pasan. Bisa dikasih waktu?";
         
         // Second Dialogue Options
-        debtor.secondPersuadeOption = "Bagaimana kalau Anda bayar separuh dulu hari ini, sisanya minggu depan?";
+        debtor.secondPersuadeOption = "Sekarang Anda harus bayar lunas. Ini solusi terbaik untuk Anda.";
         debtor.secondIntimidateOption = "Kalau tidak bayar sekarang juga, saya akan lapor ke atasan. Siap ditagih terus-menerus?";
         debtor.secondNeutralOption = "Saya di sini cuma jalankan tugas. Ada cara yang bisa kita sepakati?";
         
         // Final Outcomes
-        debtor.successDialogue = "Baiklah, saya transfer sekarang. Tapi tolong beri saya waktu minggu depan untuk sisanya.";
+        debtor.successDialogue = "Baiklah, saya transfer sekarang. Lunas ya, jangan ada tagihan lagi.";
         debtor.failureDialogue = "Udah cukup! Pergi dari rumah saya!";
-        
-        // Personality traits
-        debtor.intimidationResistance = 20;
-        debtor.persuasionSusceptibility = 70;
-        debtor.empathySusceptibility = 60;
     }
     
     public static void ConfigureBuWatiData(Debtor debtor)
@@ -57,23 +52,18 @@ public static class DebtorDataHelper
         debtor.firstNeutralOption = "Saya tahu ini berat, tapi saya harus jalankan tugas.";
         
         // Responses to First Dialogue
-        debtor.responseToPersuade = "Uang saya gak cukup… Saya cuma bisa kasih 50 ribu…";
+        debtor.responseToPersuade = "Uang saya gak cukup… Tapi saya akan usahakan…";
         debtor.responseToIntimidate = "*menangis* Saya... saya gak punya uang... tolong jangan marah-marah...";
-        debtor.responseToNeutral = "Uang saya gak cukup… Saya cuma bisa kasih 50 ribu…";
+        debtor.responseToNeutral = "Uang saya gak cukup… Tapi saya akan usahakan…";
         
         // Second Dialogue Options
-        debtor.secondNeutralOption = "Baik Bu, saya catat sebagai cicilan.";
-        debtor.secondPersuadeOption = "Ibu bisa pinjam tetangga mungkin? Saya akan kembali sore.";
-        debtor.secondIntimidateOption = "Kalau segini, saya harus lapor. Bisa ada konsekuensi besar lho.";
+        debtor.secondNeutralOption = "Baik Bu, tolong bayar lunas hari ini.";
+        debtor.secondPersuadeOption = "Ibu bisa pinjam tetangga mungkin? Harus lunas hari ini.";
+        debtor.secondIntimidateOption = "Kalau gak lunas hari ini, saya harus lapor. Bisa ada konsekuensi besar lho.";
         
         // Final Outcomes
-        debtor.successDialogue = "Makasih ya... Saya usahakan minggu depan bisa lebih...";
+        debtor.successDialogue = "Makasih ya... Nih uangnya, lunas ya...";
         debtor.failureDialogue = "Anak saya! Ada orang jahat mau pukul mama! Tolong!";
-        
-        // Personality traits
-        debtor.intimidationResistance = 10;
-        debtor.persuasionSusceptibility = 90;
-        debtor.empathySusceptibility = 95;
     }
     
     public static void ConfigurePakRikoData(Debtor debtor)
@@ -104,11 +94,6 @@ public static class DebtorDataHelper
         // Final Outcomes
         debtor.successDialogue = "Nih transferan. Selesai kan? Jangan ganggu bisnis saya lagi.";
         debtor.failureDialogue = "Hello, lawyer? Ada debt collector abal-abal di sini. Datang sekarang!";
-        
-        // Personality traits
-        debtor.intimidationResistance = 60;
-        debtor.persuasionSusceptibility = 75;
-        debtor.empathySusceptibility = 30;
     }
     
     public static void ConfigureYusufData(Debtor debtor)
@@ -132,18 +117,13 @@ public static class DebtorDataHelper
         debtor.responseToPersuade = "Gue baru kalah 1 juta, bro… Gak bisa bayar sekarang…";
         
         // Second Dialogue Options
-        debtor.secondPersuadeOption = "Gue kasih lo waktu 2 hari. Tapi jangan kabur.";
-        debtor.secondNeutralOption = "Berapa lo bisa kasih sekarang? Sekecil apa pun.";
-        debtor.secondIntimidateOption = "Kalau gak bisa bayar, lo tau risikonya.";
+        debtor.secondPersuadeOption = "Lo harus bayar lunas sekarang, bro. Gak ada tawar-menawar lagi.";
+        debtor.secondNeutralOption = "Berapa pun cara lo, yang penting lunas hari ini.";
+        debtor.secondIntimidateOption = "Kalau gak bisa bayar lunas, lo tau risikonya.";
         
         // Final Outcomes
-        debtor.successDialogue = "Nih 200 ribu, sisanya tunggu gue menang slot lagi ya bro...";
+        debtor.successDialogue = "Nih uangnya lengkap, lunas ya bro. Gue gak mau ribet lagi.";
         debtor.failureDialogue = "Gue kabur dulu bro! Lo gak bakal nemu gue!";
-        
-        // Personality traits
-        debtor.intimidationResistance = 30;
-        debtor.persuasionSusceptibility = 60;
-        debtor.empathySusceptibility = 70;
     }
     
     public static void ConfigureBuRiniData(Debtor debtor)
@@ -162,23 +142,18 @@ public static class DebtorDataHelper
         debtor.firstPersuadeOption = "Saya tahu ini berat, Bu. Saya nggak datang buat marah, tapi cari solusi.";
         
         // Responses to First Dialogue
-        debtor.responseToNeutral = "Saya baru bisa setor sebagian. Dagangan sepi…";
+        debtor.responseToNeutral = "Saya akan berusaha bayar lunas. Dagangan sepi tapi saya akan cari cara…";
         debtor.responseToIntimidate = "*menangis* Tolong... saya benar-benar tidak punya... jangan sakiti saya...";
-        debtor.responseToPersuade = "Saya baru bisa setor sebagian. Dagangan sepi…";
+        debtor.responseToPersuade = "Saya akan berusaha bayar lunas. Dagangan sepi tapi saya akan cari cara…";
         
         // Second Dialogue Options
-        debtor.secondPersuadeOption = "Bagaimana kalau kita buat cicilan ringan tiap minggu, Bu?";
-        debtor.secondIntimidateOption = "Kalau tidak bayar hari ini, saya harus catat sebagai gagal bayar.";
-        debtor.secondNeutralOption = "Kalau Ibu ada niat, saya bantu laporkan sebagai pembayaran awal.";
+        debtor.secondPersuadeOption = "Tolong Bu, harus lunas hari ini. Saya yakin Ibu bisa cari cara.";
+        debtor.secondIntimidateOption = "Kalau tidak bayar lunas hari ini, saya harus catat sebagai gagal bayar.";
+        debtor.secondNeutralOption = "Kalau Ibu ada niat, tolong bayar lunas sekarang.";
         
         // Final Outcomes
-        debtor.successDialogue = "Makasih ya Mas... Saya usahakan tiap minggu setor sedikit.";
+        debtor.successDialogue = "Makasih ya Mas... Nih uangnya lengkap, lunas ya.";
         debtor.failureDialogue = "Saya gak sanggup! Jangan datang lagi ya…";
-        
-        // Personality traits
-        debtor.intimidationResistance = 15;
-        debtor.persuasionSusceptibility = 85;
-        debtor.empathySusceptibility = 90;
     }
     
     public static void ConfigureRizwanData(Debtor debtor)
@@ -197,22 +172,17 @@ public static class DebtorDataHelper
         debtor.firstPersuadeOption = "Gacha nggak dapet SSR, utang juga numpuk? Hebat juga hidup lo.";
         
         // Responses to First Dialogue
-        debtor.responseToNeutral = "Gue bisa bayar, tapi minggu depan. Lo percaya gak?";
+        debtor.responseToNeutral = "Gue bisa bayar lunas sekarang. Lo percaya gak?";
         debtor.responseToIntimidate = "HAH?! NGAPAIN LO BAWA-BAWA ORTU GUE?! KELUAR!";
         debtor.responseToPersuade = "*marah* ANJIR! GUE LAGI RATE UP NIH! PERGI SONO!";
         
         // Second Dialogue Options
-        debtor.secondNeutralOption = "Oke, saya percaya. Tapi kasih DP dulu ya.";
-        debtor.secondIntimidateOption = "Kalau minggu depan gak ada kabar, siap-siap disamperin rame-rame.";
-        debtor.secondPersuadeOption = "Kalau bisa sekarang sedikit dulu, sisanya minggu depan.";
+        debtor.secondNeutralOption = "Oke, saya percaya. Tapi harus lunas sekarang.";
+        debtor.secondIntimidateOption = "Kalau sekarang gak lunas, siap-siap disamperin rame-rame.";
+        debtor.secondPersuadeOption = "Gue butuh lunas sekarang, gak ada tawar-menawar lagi.";
         
         // Final Outcomes
-        debtor.successDialogue = "Oke, nih 50 ribu dulu. Sisanya minggu depan ya. Gue janji.";
+        debtor.successDialogue = "Oke oke, nih uangnya lengkap. Lunas ya. Gue gak mau ribet.";
         debtor.failureDialogue = "Ah males banget lo. Gue blokir nomer lo nanti!";
-        
-        // Personality traits
-        debtor.intimidationResistance = 40;
-        debtor.persuasionSusceptibility = 50;
-        debtor.empathySusceptibility = 25;
     }
 }
