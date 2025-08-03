@@ -102,7 +102,6 @@ public class SimpleFPController : MonoBehaviour
             animator.SetBool("isMoving", isAnyMovement);
             animator.SetBool("isRunning", isAnyMovement && speed == runSpeed);
         }
-
     }
 
     float refVelX;

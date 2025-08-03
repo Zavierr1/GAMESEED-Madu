@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8499845239892243404}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.79, y: 1.13, z: -1.155}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 540f08853e27f404babeda2af792e17b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseSensitivity: {x: 20, y: 20}
+  mouseSensitivity: {x: 5, y: 5}
   verticalLookLimit: {x: -85, y: 85}
   smooth: 0.05
   physicsController: 0
@@ -58,9 +58,9 @@ MonoBehaviour:
   strafeLeft: 97
   strafeRight: 100
   run: 304
-  sight: 0
+  sight: 1
   sightPrefab: {fileID: 0}
-  hideCursor: 0
+  hideCursor: 1
 --- !u!143 &5495207067051248956
 CharacterController:
   m_ObjectHideFlags: 0
@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 4571188776688882310}
   - component: {fileID: 2152902029904516714}
   - component: {fileID: 7466199974074196998}
+  - component: {fileID: 2911680954434166671}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -114,7 +115,7 @@ Transform:
   m_GameObject: {fileID: 8820457810719680914}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.08, y: 0.73, z: -0.16}
+  m_LocalPosition: {x: 0.023, y: 0.888, z: 0.159}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -153,7 +154,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 55
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -179,6 +180,27 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8820457810719680914}
   m_Enabled: 1
+--- !u!95 &2911680954434166671
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8820457810719680914}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &7241259835364613296
 PrefabInstance:
   m_ObjectHideFlags: 0
