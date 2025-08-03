@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 021959b5ff2d73e49856758b41a05bf5, type: 3}
+  m_Name: Debtor_PakRiko
+  m_EditorClassIdentifier: 
+  debtorName: Pak Riko
+  occupation: Usahawan Rental Mobil
+  personality: 2
+  debtAmount: 5000000
+  introDialogue: Oh, penagih hutang ya? Mau apa kamu di sini?
+  firstIntimidateOption: Bayar sekarang, atau saya seret ke pengadilan.
+  firstPersuadeOption: Kalau Bapak lunas hari ini, tidak ada catatan buruk untuk
+    bisnis Anda.
+  firstNeutralOption: Pak, saya ingin menyelesaikan penagihan Anda dengan baik.
+  responseToIntimidate: Hah?! Pengadilan? Kamu tahu gak siapa saya? Tunggu saya telepon
+    lawyer!
+  responseToPersuade: Saya gak ada waktu. Mau saya bayar, berapa sih?
+  responseToNeutral: Saya gak ada waktu. Mau saya bayar, berapa sih?
+  secondIntimidateOption: Kalau gak sekarang, saya buat laporan. Nama Bapak bisa
+    jelek.
+  secondPersuadeOption: Bayar sekarang, saya anggap lunas. Besok bisa beda ceritanya.
+  secondNeutralOption: Jumlahnya 5 juta. Saya bisa terima tunai atau transfer.
+  successDialogue: Nih transferan. Selesai kan? Jangan ganggu bisnis saya lagi.
+  failureDialogue: Hello, lawyer? Ada debt collector abal-abal di sini. Datang sekarang!
+  intimidationResistance: 60
+  persuasionSusceptibility: 75
+  empathySusceptibility: 30

@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 021959b5ff2d73e49856758b41a05bf5, type: 3}
+  m_Name: Debtor_Andri
+  m_EditorClassIdentifier: 
+  debtorName: Andri
+  occupation: Karyawan Swasta (Admin Finance)
+  personality: 0
+  debtAmount: 2000000
+  introDialogue: Maaf, Anda siapa ya?
+  firstIntimidateOption: Saya dari kantor penagihan. Sudah cukup main-main. Saatnya
+    bayar!
+  firstPersuadeOption: Pak Andri, saya paham kondisi sulit. Tapi kita bisa selesaikan
+    ini dengan cara baik-baik.
+  firstNeutralOption: Saya dari kantor penagihan. Boleh saya bicara sebentar soal
+    tagihan Anda?
+  responseToIntimidate: Hah?! Siapa Anda berani ngomong kayak gitu ke saya?! Keluar
+    dari rumah saya!
+  responseToPersuade: Saya memang belum bayar, tapi uang saya pas-pasan. Bisa dikasih
+    waktu?
+  responseToNeutral: Saya memang belum bayar, tapi uang saya pas-pasan. Bisa dikasih
+    waktu?
+  secondIntimidateOption: Kalau tidak bayar sekarang juga, saya akan lapor ke atasan.
+    Siap ditagih terus-menerus?
+  secondPersuadeOption: Bagaimana kalau Anda bayar separuh dulu hari ini, sisanya
+    minggu depan?
+  secondNeutralOption: Saya di sini cuma jalankan tugas. Ada cara yang bisa kita
+    sepakati?
+  successDialogue: Baiklah, saya transfer sekarang. Tapi tolong beri saya waktu minggu
+    depan untuk sisanya.
+  failureDialogue: Udah cukup! Pergi dari rumah saya!
+  intimidationResistance: 20
+  persuasionSusceptibility: 70
+  empathySusceptibility: 60

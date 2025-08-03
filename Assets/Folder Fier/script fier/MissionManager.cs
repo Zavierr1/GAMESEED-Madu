@@ -164,12 +164,7 @@ public class MissionManager : MonoBehaviour
         {
             Debug.Log($"All missions completed! Final result: {successfulMissions}/{totalMissions}");
             
-            // Respawn player when all missions are finished
-            if (respawnPlayerOnNewDay && playerTransform != null)
-            {
-                RespawnPlayer();
-            }
-            
+            // Don't respawn automatically - wait for Next Day button press
             onAllMissionsCompleted.Invoke();
         }
     }
@@ -182,6 +177,12 @@ public class MissionManager : MonoBehaviour
     // This function is called by DayManager to start a new day.
     public void StartNewDay()
     {
+        // Respawn player when starting new day (called by Next Day button)
+        if (respawnPlayerOnNewDay && playerTransform != null)
+        {
+            RespawnPlayer();
+        }
+        
         SetupDailyMissions();
     }
     

@@ -9,19 +9,41 @@ public class Debtor : ScriptableObject
     public PersonalityType personality;
     public float debtAmount;
     
-    [Header("Dialogues")]
+    [Header("First Dialogue Round")]
     public string introDialogue;
+    
+    [TextArea(3, 5)]
+    public string firstIntimidateOption;
+    
+    [TextArea(3, 5)]
+    public string firstPersuadeOption;
+    
+    [TextArea(3, 5)]
+    public string firstNeutralOption;
+    
+    [Header("Responses to First Dialogue")]
+    [TextArea(3, 5)]
+    public string responseToIntimidate;
+    
+    [TextArea(3, 5)]
+    public string responseToPersuade;
+    
+    [TextArea(3, 5)]
+    public string responseToNeutral;
+    
+    [Header("Second Dialogue Round")]
+    [TextArea(3, 5)]
+    public string secondIntimidateOption;
+    
+    [TextArea(3, 5)]
+    public string secondPersuadeOption;
+    
+    [TextArea(3, 5)]
+    public string secondNeutralOption;
+    
+    [Header("Final Outcomes")]
     public string successDialogue;
     public string failureDialogue;
-    
-    [TextArea(3, 10)]
-    public string intimidateOption;
-    
-    [TextArea(3, 10)]
-    public string persuadeOption;
-    
-    [TextArea(3, 10)]
-    public string neutralOption;
     
     [Header("Personality Traits")]
     [Range(0, 100)]

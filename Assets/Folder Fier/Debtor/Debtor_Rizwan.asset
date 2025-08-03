@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 021959b5ff2d73e49856758b41a05bf5, type: 3}
+  m_Name: Debtor_Rizwan
+  m_EditorClassIdentifier: 
+  debtorName: Rizwan
+  occupation: Remaja Gacha Addict
+  personality: 5
+  debtAmount: 1200000
+  introDialogue: Heh, utang apaan? Duit gue udah abis buat top up kemarin.
+  firstIntimidateOption: Masalahnya bukan duit lo buat top up, tapi duit orang tua
+    lo yang harus dibalikin.
+  firstPersuadeOption: Gacha nggak dapet SSR, utang juga numpuk? Hebat juga hidup
+    lo.
+  firstNeutralOption: Saya tahu ini berat. Tapi ini soal utang lama. Bisa kita bicarakan?
+  responseToIntimidate: HAH?! NGAPAIN LO BAWA-BAWA ORTU GUE?! KELUAR!
+  responseToPersuade: '*marah* ANJIR! GUE LAGI RATE UP NIH! PERGI SONO!'
+  responseToNeutral: Gue bisa bayar, tapi minggu depan. Lo percaya gak?
+  secondIntimidateOption: Kalau minggu depan gak ada kabar, siap-siap disamperin
+    rame-rame.
+  secondPersuadeOption: Kalau bisa sekarang sedikit dulu, sisanya minggu depan.
+  secondNeutralOption: Oke, saya percaya. Tapi kasih DP dulu ya.
+  successDialogue: Oke, nih 50 ribu dulu. Sisanya minggu depan ya. Gue janji.
+  failureDialogue: Ah males banget lo. Gue blokir nomer lo nanti!
+  intimidationResistance: 40
+  persuasionSusceptibility: 50
+  empathySusceptibility: 25

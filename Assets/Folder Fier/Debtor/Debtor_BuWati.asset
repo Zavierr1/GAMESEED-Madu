@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 021959b5ff2d73e49856758b41a05bf5, type: 3}
+  m_Name: Debtor_BuWati
+  m_EditorClassIdentifier: 
+  debtorName: Bu Wati
+  occupation: Ibu Rumah Tangga
+  personality: 1
+  debtAmount: 500000
+  introDialogue: "Eh\u2026 maaf ya Nak, ini soal apa ya?"
+  firstIntimidateOption: Ibu sudah terlalu lama menunda. Saatnya diselesaikan.
+  firstPersuadeOption: Saya dari kantor penagihan. Kita cari jalan tengah, Bu.
+  firstNeutralOption: Saya tahu ini berat, tapi saya harus jalankan tugas.
+  responseToIntimidate: '*menangis* Saya... saya gak punya uang... tolong jangan
+    marah-marah...'
+  responseToPersuade: "Uang saya gak cukup\u2026 Saya cuma bisa kasih 50 ribu\u2026"
+  responseToNeutral: "Uang saya gak cukup\u2026 Saya cuma bisa kasih 50 ribu\u2026"
+  secondIntimidateOption: Kalau segini, saya harus lapor. Bisa ada konsekuensi besar
+    lho.
+  secondPersuadeOption: Ibu bisa pinjam tetangga mungkin? Saya akan kembali sore.
+  secondNeutralOption: Baik Bu, saya catat sebagai cicilan.
+  successDialogue: Makasih ya... Saya usahakan minggu depan bisa lebih...
+  failureDialogue: Anak saya! Ada orang jahat mau pukul mama! Tolong!
+  intimidationResistance: 10
+  persuasionSusceptibility: 90
+  empathySusceptibility: 95
