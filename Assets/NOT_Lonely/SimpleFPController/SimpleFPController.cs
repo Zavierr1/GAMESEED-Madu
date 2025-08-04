@@ -150,21 +150,12 @@ public class SimpleFPController : MonoBehaviour
         if (audioSource == null || audioSource2 == null) return;
 
         // Check if game is paused or in dialogue - stop all movement sounds
-        bool inDialogue = IsInDialogue();
+        // Optimize: reduce dialogue checking frequency
+        bool inDialogue = Time.frameCount % 10 == 0 ? IsInDialogue() : false; // Check every 10 frames
         bool movementDisabled = !this.enabled; // Check if this script is disabled
         
         if (PauseManager.isGamePaused || inDialogue || movementDisabled)
         {
-            // Debug logging to see if this condition is being triggered
-            if (inDialogue)
-            {
-                Debug.Log("In dialogue - stopping footstep sounds");
-            }
-            if (movementDisabled)
-            {
-                Debug.Log("Movement disabled - stopping footstep sounds");
-            }
-            
             if (audioSource.isPlaying)
             {
                 audioSource.Stop();
@@ -220,15 +211,10 @@ public class SimpleFPController : MonoBehaviour
     // Check if player is currently in dialogue
     bool IsInDialogue()
     {
-        // Check if DialogueManager exists and dialogue is active
+        // Cache the dialogue manager check to avoid repeated FindObjectOfType calls
         if (DialogueManager.Instance != null)
         {
-            bool dialogueActive = DialogueManager.Instance.IsDialogueActive;
-            if (dialogueActive)
-            {
-                Debug.Log("Dialogue is active - should stop footsteps");
-            }
-            return dialogueActive;
+            return DialogueManager.Instance.IsDialogueActive;
         }
         return false;
     }
@@ -251,8 +237,10 @@ public class SimpleFPController : MonoBehaviour
         xRot -= mouseY;
         xRot = Mathf.Clamp(xRot, verticalLookLimit.x, verticalLookLimit.y);
 
-        xRotSmooth = Mathf.SmoothDamp(xRotSmooth, xRot, ref refVelX, smooth);
-        yRotSmooth = Mathf.SmoothDamp(yRotSmooth, mouseX, ref refVelY, smooth);
+        // Optimized smoothing - use lower smooth values for better responsiveness
+        float optimizedSmooth = Mathf.Max(smooth, 0.01f); // Ensure minimum smoothing
+        xRotSmooth = Mathf.SmoothDamp(xRotSmooth, xRot, ref refVelX, optimizedSmooth);
+        yRotSmooth = Mathf.SmoothDamp(yRotSmooth, mouseX, ref refVelY, optimizedSmooth);
 
         cam.transform.localEulerAngles = new Vector3(xRotSmooth, 0, 0);
         transform.Rotate(Vector3.up * yRotSmooth);
