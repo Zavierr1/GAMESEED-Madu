@@ -46,6 +46,12 @@ public class DialogueManager : MonoBehaviour
     private DialogueStage currentStage;
     private SimpleDialogueChoice firstChoice;
     
+    // Public property to check if dialogue is currently active
+    public bool IsDialogueActive 
+    { 
+        get { return dialoguePanel != null && dialoguePanel.activeInHierarchy; } 
+    }
+    
     private void Awake()
     {
         if (Instance == null) Instance = this;
@@ -447,6 +453,13 @@ public class DialogueManager : MonoBehaviour
         // Reset dialogue state
         currentStage = DialogueStage.ShowingIntro;
         SetChoiceButtonsActive(true);
+        
+        // Re-enable player movement and hide cursor
+        InteractionManager interactionManager = FindObjectOfType<InteractionManager>();
+        if (interactionManager != null)
+        {
+            interactionManager.EndInteraction();
+        }
         
         // Notify mission manager
         MissionManager.Instance.CompleteMission(currentOutcome.success);

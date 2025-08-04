@@ -51,6 +51,13 @@ public class DebtorCharacter : MonoBehaviour
         
         hasBeenInteracted = true;
         
+        // Disable player movement and show cursor
+        InteractionManager interactionManager = FindObjectOfType<InteractionManager>();
+        if (interactionManager != null)
+        {
+            interactionManager.StartInteraction();
+        }
+        
         // Start dialogue using DialogueManager
         if (DialogueManager.Instance != null)
         {

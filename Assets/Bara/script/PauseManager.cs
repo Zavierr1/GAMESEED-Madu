@@ -41,7 +41,14 @@ public class PauseManager : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         isPaused = true;
-        PauseManager.isGamePaused = true; // Tambah ini
+        PauseManager.isGamePaused = true;
+        
+        // Pause background music
+        BackgroundMusicManager musicManager = FindObjectOfType<BackgroundMusicManager>();
+        if (musicManager != null)
+        {
+            musicManager.OnGamePaused();
+        }
     }
 
     public void ResumeGame()
@@ -56,11 +63,22 @@ public class PauseManager : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         isPaused = false;
-        PauseManager.isGamePaused = false; // Tambah ini
+        PauseManager.isGamePaused = false;
+        
+        // Resume background music
+        BackgroundMusicManager musicManager = FindObjectOfType<BackgroundMusicManager>();
+        if (musicManager != null)
+        {
+            musicManager.OnGameResumed();
+        }
     }
 
     public void GoToMainMenu()
     {
+        // Reset pause state
+        isPaused = false;
+        PauseManager.isGamePaused = false;
+        
         Time.timeScale = 1f;
 
         // Aktifkan cursor agar bisa klik UI saat kembali ke Main Menu

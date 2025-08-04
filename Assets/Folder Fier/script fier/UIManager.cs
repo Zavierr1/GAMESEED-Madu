@@ -58,6 +58,27 @@ public class UIManager : MonoBehaviour
         // Update UI one final time
         UpdateMissionProgressUI();
         
+        // Show cursor for clicking the next day button
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        
+        // Disable player movement since they need to click the button
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        if (playerObj != null)
+        {
+            // Find any movement script and disable it
+            MonoBehaviour[] scripts = playerObj.GetComponents<MonoBehaviour>();
+            foreach (var script in scripts)
+            {
+                if (script.GetType().Name.Contains("Movement") || 
+                    script.GetType().Name.Contains("Controller") ||
+                    script.GetType().Name.Contains("FP"))
+                {
+                    script.enabled = false;
+                }
+            }
+        }
+        
         // Show next day button
         nextDayButton.gameObject.SetActive(true);
     }
@@ -70,6 +91,27 @@ public class UIManager : MonoBehaviour
     
     private void OnNextDayClicked()
     {
+        // Re-enable player movement and hide cursor
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        if (playerObj != null)
+        {
+            // Find any movement script and re-enable it
+            MonoBehaviour[] scripts = playerObj.GetComponents<MonoBehaviour>();
+            foreach (var script in scripts)
+            {
+                if (script.GetType().Name.Contains("Movement") || 
+                    script.GetType().Name.Contains("Controller") ||
+                    script.GetType().Name.Contains("FP"))
+                {
+                    script.enabled = true;
+                }
+            }
+        }
+        
+        // Hide cursor and lock it back for gameplay
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        
         // Hide the button
         if (nextDayButton != null)
         {

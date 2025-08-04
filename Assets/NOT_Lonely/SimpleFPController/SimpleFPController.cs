@@ -46,6 +46,12 @@ public class SimpleFPController : MonoBehaviour
     public bool sight = false;
     public GameObject sightPrefab;
 
+    [Header("AUDIO")]
+    public AudioSource audioSource;
+    public AudioSource audioSource2;
+    public AudioClip walkSound;
+    public AudioClip runSound;
+
     //private Rigidbody rb;
 
     public bool hideCursor = false;
@@ -70,6 +76,36 @@ public class SimpleFPController : MonoBehaviour
         controller = GetComponent<CharacterController>();
         cam = GetComponentInChildren<Camera>();
         //rb = GetComponent<Rigidbody>();
+
+        // Initialize audio sources if not assigned
+        if (audioSource == null)
+        {
+            audioSource = GetComponent<AudioSource>();
+            if (audioSource == null)
+            {
+                audioSource = gameObject.AddComponent<AudioSource>();
+            }
+        }
+        
+        if (audioSource2 == null)
+        {
+            audioSource2 = gameObject.AddComponent<AudioSource>();
+        }
+        
+        // Setup audio sources
+        if (walkSound != null && audioSource != null)
+        {
+            audioSource.clip = walkSound;
+            audioSource.loop = true;
+            audioSource.playOnAwake = false;
+        }
+        
+        if (runSound != null && audioSource2 != null)
+        {
+            audioSource2.clip = runSound;
+            audioSource2.loop = true;
+            audioSource2.playOnAwake = false;
+        }
 
         if (hideCursor && !PauseManager.isGamePaused)
         {
@@ -104,6 +140,97 @@ public class SimpleFPController : MonoBehaviour
             animator.SetBool("isMoving", isAnyMovement);
             animator.SetBool("isRunning", isAnyMovement && speed == runSpeed);
         }
+
+        // Handle footstep audio - simple approach
+        HandleSimpleAudio(isAnyMovement, speed == runSpeed);
+    }
+
+    void HandleSimpleAudio(bool isMoving, bool isRunning)
+    {
+        if (audioSource == null || audioSource2 == null) return;
+
+        // Check if game is paused or in dialogue - stop all movement sounds
+        bool inDialogue = IsInDialogue();
+        bool movementDisabled = !this.enabled; // Check if this script is disabled
+        
+        if (PauseManager.isGamePaused || inDialogue || movementDisabled)
+        {
+            // Debug logging to see if this condition is being triggered
+            if (inDialogue)
+            {
+                Debug.Log("In dialogue - stopping footstep sounds");
+            }
+            if (movementDisabled)
+            {
+                Debug.Log("Movement disabled - stopping footstep sounds");
+            }
+            
+            if (audioSource.isPlaying)
+            {
+                audioSource.Stop();
+            }
+            if (audioSource2.isPlaying)
+            {
+                audioSource2.Stop();
+            }
+            return;
+        }
+
+        if (isMoving)
+        {
+            if (isRunning)
+            {
+                // Running: play run sound, stop walk sound
+                if (runSound != null && !audioSource2.isPlaying)
+                {
+                    audioSource2.Play();
+                }
+                if (audioSource.isPlaying)
+                {
+                    audioSource.Stop();
+                }
+            }
+            else
+            {
+                // Walking: play walk sound, stop run sound
+                if (walkSound != null && !audioSource.isPlaying)
+                {
+                    audioSource.Play();
+                }
+                if (audioSource2.isPlaying)
+                {
+                    audioSource2.Stop();
+                }
+            }
+        }
+        else
+        {
+            // Not moving: stop both sounds
+            if (audioSource.isPlaying)
+            {
+                audioSource.Stop();
+            }
+            if (audioSource2.isPlaying)
+            {
+                audioSource2.Stop();
+            }
+        }
+    }
+
+    // Check if player is currently in dialogue
+    bool IsInDialogue()
+    {
+        // Check if DialogueManager exists and dialogue is active
+        if (DialogueManager.Instance != null)
+        {
+            bool dialogueActive = DialogueManager.Instance.IsDialogueActive;
+            if (dialogueActive)
+            {
+                Debug.Log("Dialogue is active - should stop footsteps");
+            }
+            return dialogueActive;
+        }
+        return false;
     }
 
     float refVelX;
